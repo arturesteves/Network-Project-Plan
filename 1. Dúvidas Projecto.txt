@@ -1,12 +1,5 @@
-Redes
-Mão de obra:
-	- Artur: 26/12/2016:
-		- 2 horas + 50 minutos
-		 
-	
-- Tempo Total Stor para fazer o projecto: 8Horas - 1 Dia de trabalho 
-	
-	
+﻿Redes
+
 	Para fazer o diagrama da topologia física usar a tabela :
 		IDENTIFICAÇÃO DA CABLAGEM HORIZONTAL
 	
@@ -47,7 +40,8 @@ Questões:
 		- Não preciso de um pc aqui pois nao?
 			- A não ser que aqui o arquivo tambem possa ser digital.
 				- Adicionei um pc devido a este facto
-				
+	(Não perguntei esta)
+			
 	8. Como escolher a categoria de cabo a usar?
 		- Cat.6
 			https://www.google.pt/search?q=cable+category&espv=2&biw=1536&bih=735&site=webhp&tbm=isch&imgil=kgldF2etxw1uvM%253A%253BdYtoH2B-XSQhzM%253Bhttp%25253A%25252F%25252Fwww.netw0rks3curity.in%25252F2013%25252F04%25252Fdifferent-category-of-ethernet-cable.html&source=iu&pf=m&fir=kgldF2etxw1uvM%253A%252CdYtoH2B-XSQhzM%252C_&usg=__3Nml49YuV08DULoItjah028etsI%3D&ved=0ahUKEwjOnKCJz5LRAhVFOBQKHbOJA5cQyjcINQ&ei=v3JhWI7BFMXwULOTjrgJ#imgrc=VbCbZRNftINoCM%3A
@@ -66,10 +60,10 @@ Questões:
 					- Isto depois não tem implicações?
 						- Ligado a segurança?
 							
-							
+	(Não perguntei esta)
+						
 	10. Existirá apenas 1 telefone em cada sala?
 		- nas que fizer sentido.
 		- ou existe alguma com mais?
+		- Faz sentido representar telefones? Se sim, temos em conta que são telefones por IP? Porque se forem teremos que contabilizá-los no número de portas a usar pelos switches.
 		
-		
-	

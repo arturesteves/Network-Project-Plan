@@ -1,0 +1,34 @@
+
+1. Na topologia logica de devem apenas estar representados os equipamentos de rede?
+	- router e switches?
+	- Ou os pcs, telefones também devem estar representados?
+	
+	- Qual é o tipo de ligação à internet? (como sei?)
+	
+		
+	- Qual a marca e o modelo do router e dos switches a usar?
+	
+	- Se a empresa tiver um servidor este irá estar ligado ao router mais externo? ou seja ao que está ligado à internet? ou depende?
+	
+	
+	
+2. Na topologia fisica verificar se as tomadas estão bem representadas
+	- ou se existe uma forma de melhorar a sua localização 
+	
+	- Qual o melhor ponto para o access point? (permitir rede wireless)
+		- Não será melhor utilizador 2 access point? 
+			- Um está num lado do piso e outro do outro?
+	
+	- Que software normalmente se usa?
+		- tenhi que medir à mão o comprimento dos cabos?
+	
+	- tenho que encontrar as 2 melhores salas para colocar os 2 switches?
+		- os cabos a serem usados para ligar os pcs aos switches e destes ao router, também tem que ser contados?
+	
+	
+1º Fazer a topologia fisica e só depois a topologia logica (por causa das as tomadas ocupadas, livres, ...)
+
+
+
+
+	
