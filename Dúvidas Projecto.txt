@@ -16,7 +16,10 @@ Mão de obra:
 	
 	- ANTES DE CONTINUAR A TABELA de cabelagem horizontal, mandar mail ao prof. a confirmar a distribuição dos postos
 	
-	
+	VLAN - VOIP actua como a central de telefones	 ?
+		- Perguntar ao stor
+		
+		
 	
 Questões:
 	1. Falta a planta em anexo
