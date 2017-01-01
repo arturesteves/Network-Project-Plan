@@ -66,6 +66,8 @@ outro lado.
 16. Na tabela de identificação das VLANs, o campo ' numero total com folga',
 significa o número de equipamentos possíveis? ligado ao endereçamento escolhido? /qualquerCoisa?
 	
+
+17. Posso separar os níveis de switches em 3? MC, IC and HC
 	
 -----------------
 1º Fazer a topologia fisica e só depois a topologia logica (por causa das as tomadas ocupadas, livres, ...)
