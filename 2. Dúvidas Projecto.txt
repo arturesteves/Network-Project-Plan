@@ -1,4 +1,4 @@
-
+﻿
 1. Na topologia logica de devem apenas estar representados os equipamentos de rede?
 	- router e switches?
 	- Ou os pcs, telefones também devem estar representados?
@@ -25,7 +25,49 @@
 	- tenho que encontrar as 2 melhores salas para colocar os 2 switches?
 		- os cabos a serem usados para ligar os pcs aos switches e destes ao router, também tem que ser contados?
 	
+3. Se tenho um patch panel e este está na sala dos servidores os switches também têm que ficar na sala dos servidores certo?
 	
+4. Confirmar que a sala de telecomunicações não tem nenhum posto de trabalho, nem telefones, nem tomadas duplas,
+nem portas a ocupadas no switch.
+
+5. Tenho 49 portas ligadas aos switches, como cada switch tem 24 portas, significa que terei que optar por acrescentar
++1 switch ou desocupar alguma porta. Deveria optar pela opção 1, porque assim é possível adicionar novos 
+postos de trabalho, porque ja existe um novo switch.
+
+6. Foi optado por duplicar em cada sala o número de tomadas duplas necessárias, caso o número de postos de trabalho, 
+ou outros equipamentos aumentem na sala, desta maneira as fichas não estão à conta.
+	- Confirmar se é um boa jogada.
+	- Secalhar é muito não?
+	
+7. Confirmar os outros equipamentos mencionados na sala de telecomunicações.
+
+8. Confirmar os access point com o stor.
+	- preciso de 2?
+	- irão ligar-se a uma das tomadas de uma sala?, ou terei que colocar uma tomada no corredor?
+	- estes ligam-se ao switch
+	
+9. Posso ligar os 2 switches? Para causar redundância? caso falhe uma ligação de um switch existe uma passagem pelo
+outro lado.
+
+
+10. Na topologia lógica indico que o router está ligado ao modem e este ao ISP e este à Internet?
+
+11. Os switches estao todos na sala de telecomunicações certo?
+
+12. Onde fazer o diagrama do bastidor?
+
+13. A criação de VLANs é uma opção usada pelas empresas?
+	- mostrar ao stor o desenho da distribuição das vlans
+
+14. No Packet Tracer temos que colocar todos os PCS e telefones?
+
+15. Quando é indicando (incluindo folga) significa para dar uma margem?
+	
+16. Na tabela de identificação das VLANs, o campo ' numero total com folga',
+significa o número de equipamentos possíveis? ligado ao endereçamento escolhido? /qualquerCoisa?
+	
+	
+-----------------
 1º Fazer a topologia fisica e só depois a topologia logica (por causa das as tomadas ocupadas, livres, ...)
 
 

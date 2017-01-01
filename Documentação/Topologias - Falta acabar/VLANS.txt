@@ -1,0 +1,31 @@
+VLANS	
+	- Gestão da Rede (composta porque salas?)
+	
+	- Desenvolvimento
+		 - Sala 1 a 4, 11 e 12	
+			-sw1 
+	- Testes
+		 - Sala 13 a 15	
+			- sw2
+	- Periféricos	(impressoras de rede, entram aqui todos os telefones?, ou deve de existir a vlan VOIP so para os telefones?)
+		- Sala 20
+			- sw2
+	- Administração
+		- Sala 6 e 7 
+			- sw2
+	- Área Financeira
+		- Sala 8
+			- sw1 
+	- Apoio Informático
+		- Sala 10 
+			- sw1
+	- Secretariado
+		- Sala 9 e 18
+			- sw2 
+	- Arquivo e Reuniões
+		 - Sala 5 e 17
+			- sw1
+		
+		
+Falta estabelecer os endereços, mascara de cada VLANS
+4 VLANS no SW1
