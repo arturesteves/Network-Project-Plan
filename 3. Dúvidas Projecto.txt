@@ -1,0 +1,16 @@
+1. Podemos criar mais de 30 postos de trabalho?
+	- Só temos é que nos assegurar que existem pcs e telefones para pelo menos 30 trabalhadores?
+	
+2. Caso forem preciso mais de 48 portas significa que iremos precisar de mais de 2 switches, estes também aparecem representados no 
+	packet tracer ou não?
+	
+3. Porque tantos postos de trabalho na sala de reuniões e no bar e no corredor das impressoras?
+	- Por exemplo no bar posso não contar com nenhum posto de trabalho e na mesma contabilizar uma ficha dupla?
+	
+4. Porque é que o stor contabilizou 0 em outros equipamentos? 
+	- Não posso listar os telefones nesta coluna? 1Posto de trabalho = 1 PC + 1 IP PHONE, mas assim fica claro 
+	- Posso indicar também o número de routers e switches?
+	
+5. Na topologia lógica posso indicar o modem, ISP ??? e firewall se tiver tempo de configurar?
+	- indico todos os switches a usar? certo?
+	- Devo indicar algum PC ou IP Phone?
