@@ -14,3 +14,20 @@
 5. Na topologia lógica posso indicar o modem, ISP ??? e firewall se tiver tempo de configurar?
 	- indico todos os switches a usar? certo?
 	- Devo indicar algum PC ou IP Phone?
+
+6. Só é considera trunk quando é uma ligação de um switch para outro?
+	- ou entre routers e switch router também conta?
+	
+7. Qual a função de um multilayer switch?
+
+8. Na tabela de identificação das VLAN's o que significa a coluna 'número total com folga'?
+
+9. Caso isto fosse entregue a uma empresa qual seria o preço que iria custar este orçamento?
+	- Qual se quantificaria as horas gastas pela mão de obra?
+	
+10. O diagrama de topologia lógica deverá ser algo parecido a isto?
+	https://www.google.pt/imgres?imgurl=http%3A%2F%2Fwww.khmerdigitalpost.com%2Fwp-content%2Fuploads%2F2016%2F09%2FLogical-Topology.png&imgrefurl=http%3A%2F%2Fwww.khmerdigitalpost.com%2Fsample-company-network-structure-physical-and-logical-topology%2F&docid=ULy8BECV859esM&tbnid=CNxfyTITy8yvyM%3A&vet=1&w=1068&h=826&bih=735&biw=1536&q=company%20physical%20topology&ved=0ahUKEwiFr6rC_ZrRAhVCWRQKHcLPByoQMwghKAYwBg&iact=mrc&uact=8#h=826&vet=1&w=1068
+	
+11. Faço conexão com Servidor HTTP e DNS?
+
+12. 
