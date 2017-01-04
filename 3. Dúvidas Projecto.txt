@@ -30,4 +30,4 @@
 	
 11. Faço conexão com Servidor HTTP e DNS?
 
-12. Falta 
+12. Indico as distâncias entre o p.p e a tomada?
