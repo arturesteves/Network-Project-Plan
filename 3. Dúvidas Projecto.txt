@@ -31,3 +31,6 @@
 11. Faço conexão com Servidor HTTP e DNS?
 
 12. Indico as distâncias entre o p.p e a tomada?
+
+
+13. Como um router só tem 2 portas posso usar um switch intermédio?
