@@ -4,11 +4,12 @@
 	- Ou os pcs, telefones também devem estar representados?
 	
 	- Qual é o tipo de ligação à internet? (como sei?)
-	
+		- o que e um frame relay?
 		
 	- Qual a marca e o modelo do router e dos switches a usar?
-	
-	- Se a empresa tiver um servidor este irá estar ligado ao router mais externo? ou seja ao que está ligado à internet? ou depende?
+		- introduzir comando para confirmar
+
+	- Se a empresa tiver um servidor este deverá estar ligado a um switch intermediário? - do tipo IC?
 	
 	
 	
@@ -26,18 +27,17 @@
 		- os cabos a serem usados para ligar os pcs aos switches e destes ao router, também tem que ser contados?
 	
 3. Se tenho um patch panel e este está na sala dos servidores os switches também têm que ficar na sala dos servidores certo?
-	
+	- colocar os switches em algum sala?	
+
+3.1. Indicar numa tabela a distância entre o pc e o patch panel?
+
 4. Confirmar que a sala de telecomunicações não tem nenhum posto de trabalho, nem telefones, nem tomadas duplas,
 nem portas a ocupadas no switch.
+	- JÁ FOI RESPONDIDO
 
-5. Tenho 49 portas ligadas aos switches, como cada switch tem 24 portas, significa que terei que optar por acrescentar
-+1 switch ou desocupar alguma porta. Deveria optar pela opção 1, porque assim é possível adicionar novos 
-postos de trabalho, porque ja existe um novo switch.
+5. 
 
-6. Foi optado por duplicar em cada sala o número de tomadas duplas necessárias, caso o número de postos de trabalho, 
-ou outros equipamentos aumentem na sala, desta maneira as fichas não estão à conta.
-	- Confirmar se é um boa jogada.
-	- Secalhar é muito não?
+6. 
 	
 7. Confirmar os outros equipamentos mencionados na sala de telecomunicações.
 
@@ -46,8 +46,7 @@ ou outros equipamentos aumentem na sala, desta maneira as fichas não estão à 
 	- irão ligar-se a uma das tomadas de uma sala?, ou terei que colocar uma tomada no corredor?
 	- estes ligam-se ao switch
 	
-9. Posso ligar os 2 switches? Para causar redundância? caso falhe uma ligação de um switch existe uma passagem pelo
-outro lado.
+9. Posso ligar os switches? Para causar redundância? caso falhe uma ligação de um switch existe passagem por outro lado.
 
 
 10. Na topologia lógica indico que o router está ligado ao modem e este ao ISP e este à Internet?
@@ -60,8 +59,11 @@ outro lado.
 	- mostrar ao stor o desenho da distribuição das vlans
 
 14. No Packet Tracer temos que colocar todos os PCS e telefones?
+	- NÃO, 
+	- 1 telefone e um pc por vlan basta?
 
-15. Quando é indicando (incluindo folga) significa para dar uma margem?
+15. Quando é indicado (incluindo folga) significa para dar uma margem?
+	SIM
 	
 16. Na tabela de identificação das VLANs, o campo ' numero total com folga',
 significa o número de equipamentos possíveis? ligado ao endereçamento escolhido? /qualquerCoisa?
@@ -69,8 +71,6 @@ significa o número de equipamentos possíveis? ligado ao endereçamento escolhi
 
 17. Posso separar os níveis de switches em 3? MC, IC and HC
 	
------------------
-1º Fazer a topologia fisica e só depois a topologia logica (por causa das as tomadas ocupadas, livres, ...)
 
 
 

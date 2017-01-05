@@ -1,4 +1,4 @@
-1. Podemos criar mais de 30 postos de trabalho?
+﻿1. Podemos criar mais de 30 postos de trabalho?
 	- Só temos é que nos assegurar que existem pcs e telefones para pelo menos 30 trabalhadores?
 	
 2. Caso forem preciso mais de 48 portas significa que iremos precisar de mais de 2 switches, estes também aparecem representados no 
@@ -33,4 +33,4 @@
 12. Indico as distâncias entre o p.p e a tomada?
 
 
-13. Como um router só tem 2 portas posso usar um switch intermédio?
+13. Como um router só tem 2 portas posso usar um switch intermédio? pq ja tenho mais que 2 switches
