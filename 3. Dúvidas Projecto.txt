@@ -34,3 +34,12 @@
 
 
 13. Como um router só tem 2 portas posso usar um switch intermédio? pq ja tenho mais que 2 switches
+
+14. quantas vlans por switch? TODA
+	- uma vlan pode tar em mais que um switch?
+	- RESPOSTA:
+		- todos os switches tem que permitir todas as vlans -> Isto no packet tracer, para testar, na realidade nao é assim
+		- x portas para a vlan1, x para a vlan2, .... e deixar x portas livres (1/4 das portas ocupadas) -> estas nao sao configuradas
+		
+		
+	

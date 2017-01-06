@@ -2,7 +2,7 @@
 1. Na topologia logica de devem apenas estar representados os equipamentos de rede?
 	- router e switches?
 	- Ou os pcs, telefones também devem estar representados?
-	
+		
 	- Qual é o tipo de ligação à internet? (como sei?)
 		- o que e um frame relay?
 		
@@ -13,8 +13,7 @@
 	
 	
 	
-2. Na topologia fisica verificar se as tomadas estão bem representadas
-	- ou se existe uma forma de melhorar a sua localização 
+2. Na topologia fisica
 	
 	- Qual o melhor ponto para o access point? (permitir rede wireless)
 		- Não será melhor utilizador 2 access point? 
@@ -26,12 +25,13 @@
 	- tenho que encontrar as 2 melhores salas para colocar os 2 switches?
 		- os cabos a serem usados para ligar os pcs aos switches e destes ao router, também tem que ser contados?
 	
-3. Se tenho um patch panel e este está na sala dos servidores os switches também têm que ficar na sala dos servidores certo?
+x3. Se tenho um patch panel e este está na sala dos servidores os switches também têm que ficar na sala dos servidores?
 	- colocar os switches em algum sala?	
-
+		- COLOCAR 1 NA SALA DO BASTIDOR E OUTRO AO PE DAS IMPRESSORAS
+	
 3.1. Indicar numa tabela a distância entre o pc e o patch panel?
 
-4. Confirmar que a sala de telecomunicações não tem nenhum posto de trabalho, nem telefones, nem tomadas duplas,
+x4. Confirmar que a sala de telecomunicações não tem nenhum posto de trabalho, nem telefones, nem tomadas duplas,
 nem portas a ocupadas no switch.
 	- JÁ FOI RESPONDIDO
 

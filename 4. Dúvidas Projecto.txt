@@ -1,0 +1,3 @@
+Enunciado:	
+	- A rede deve conter o router de saída para a Internet. Deve utilizar o endereço externo 25.26.27.1 /30.
+		
