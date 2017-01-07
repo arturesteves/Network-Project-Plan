@@ -1,4 +1,4 @@
-VLANS	
+﻿VLANS	
 	- Gestão da Rede (composta porque salas?)
 	
 	- Desenvolvimento
@@ -29,3 +29,14 @@ VLANS
 		
 Falta estabelecer os endereços, mascara de cada VLANS
 4 VLANS no SW1
+
+
+Novas VLANS
+	- Gestão da Rede
+	- Desenvolvimento e Testes 
+	- Administração, Secretariado, Arquivos e Reuniões
+	- Área Financeira
+	- Apoio Informático
+	- Guest
+	- Periféricos
+	- VOIP
