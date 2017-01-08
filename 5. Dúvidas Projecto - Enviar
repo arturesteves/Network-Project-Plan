@@ -1,0 +1,24 @@
+Enviar Dúvidas:
+
+
+1. Preciso de 6 switches - porque preciso de 5 para fazer as ligações todas e deixar portas livres em cada 1. e preciso de outro para se ligar a todos e ao router.
+
+2. O nº de portas ligadas ao switch na sala de telecomunicações, eu não estou a contabilizar com o router e o switches se ligarem entre eles e ao router.
+
+3. Basta 1 access point?
+	- devo colocá-lo na recepção?
+	
+4. A VLAN 20 deve ser dividida, não deve? (que actualmente é composta por: Administração, Secretariado da Administracao, Arquivo, Reuniões, Recepção)
+	- Uma melhor divisão seria?:
+		- VLAN 20 - Administração e secretariado da administração
+		- VLAN 80 - Secção comercial e apoio informático
+		- VLAN 90 - Recepção 
+
+		
+	
+5. Confirmar os endereçamentos, consegui arranjar endereços para os 46 postos de trabalho. 
+
+
+fazer a topologia tipo aquele exemplo
+
+Perguntar qual o horário de dúvidas do stor, perguntar quando nos podemos encontrar.
