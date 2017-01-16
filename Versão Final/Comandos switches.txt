@@ -1,3 +1,13 @@
+Começar a atribuir portas a partir da 3.
+Tenho 10 vlans -> vou atribuir 2 portas a cada vlan
+-> as ultimas duas vlans so vao ter uma porta atribuida?
+
+Isto pq cada VLAN está representada em cada SWITCH
+
+
+Proxima porta livre: 11
+
+
 Passwords:
 
 - entrada usuário: rc
@@ -95,3 +105,10 @@ Criar vlans:
 	(repetir este passo para todas as vlans, com o nome apropriado)
 	
 Atribuir portas:
+
+	- interface range F0/3 - 4
+	- switchport mode access
+	- switchport access vlan 99
+	
+	
+	
