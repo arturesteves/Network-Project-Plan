@@ -11,9 +11,10 @@ Enviar Dúvidas:
 4. A VLAN 20 deve ser dividida, não deve? (que actualmente é composta por: Administração, Secretariado da Administracao, Arquivo, Reuniões, Recepção)
 	- Uma melhor divisão seria?:
 		- VLAN 20 - Administração e secretariado da administração
-		- VLAN 80 - Secção comercial e apoio informático
-		- VLAN 90 - Recepção 
-
+		- VLAN 80 - Secção comercial e apoio informático e Recepção 
+		
+		vlan guest sem autenticação	(wireless)
+		e vlan wireless com autenticação 
 		
 	
 5. Confirmar os endereçamentos, consegui arranjar endereços para os 46 postos de trabalho. 
@@ -22,3 +23,29 @@ Enviar Dúvidas:
 fazer a topologia tipo aquele exemplo
 
 Perguntar qual o horário de dúvidas do stor, perguntar quando nos podemos encontrar.
+
+
+
+
+Na topologia fisica
+
+na topologia logica -> tirar a ligação de um switch ao router. pq causa do loop . teria que activar varios protoclos - spanning tree?
+
+
+router - 2 switch - 2 PT para cada VLAN 
+
+	- 1 vlan esta nos dois switchs.
+	- portas trunks sao diferentes nos switches.
+	- 2 postos de trabalho por vlan embora 1 esteja em switches diferentes.
+	- para comunicar entre vlans preciso de ir ao router. - Lab 7.5
+	
+Fazer a topologia lógica de acordo com a figura. (necessário indicar as portas trunks.)
+
+
+onde faço os diagramas? para o bastidor?
+	- visio (falar com o bruno)
+quantos acces point? e onde?
+	- colocar na sala de conferências - têm um raio de 25m (+/-) abrange o piso todo. 
+	
+	- Para ter a autenticação precisaria de um autenticador.
+		- Servidor radius?
