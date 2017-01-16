@@ -11,10 +11,11 @@ Enviar Dúvidas:
 4. A VLAN 20 deve ser dividida, não deve? (que actualmente é composta por: Administração, Secretariado da Administracao, Arquivo, Reuniões, Recepção)
 	- Uma melhor divisão seria?:
 		- VLAN 20 - Administração e secretariado da administração
-		- VLAN 80 - Secção comercial e apoio informático e Recepção 
+		- VLAN 80 - Secção comercial e apoio informático
+		- VLAN 90 - Recepção
 		
-		vlan guest sem autenticação	(wireless)
-		e vlan wireless com autenticação 
+		(vlan guest sem autenticação	(wireless)
+		e vlan wireless com autenticação )
 		
 	
 5. Confirmar os endereçamentos, consegui arranjar endereços para os 46 postos de trabalho. 
