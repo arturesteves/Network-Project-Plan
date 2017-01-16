@@ -1,0 +1,97 @@
+Passwords:
+
+- entrada usuário: rc
+- entrada priviligiada: cisco
+- password telnet: telnet 
+
+
+
+configurações:
+
+
+Configurar nome do host.
+	- enable
+	- configure terminal
+	- hostname nome switch
+	
+2. Secure privileged EXEC access with a password
+	- enable
+	- conf terminal
+	- enable secret [PASSWORD]
+	(Para testar, fazer - disable e depois -enable e depois 
+	deve pedir password. Notar que pede password ao tentar aceder ao modo priveligiado!
+	
+	
+3. Secure user EXEC access with a password
+	- configure terminal
+	- line console 0	(ou console?)
+	- password [password]
+	- login
+	(para sair -exit)
+	- Esta password aparece ao entrar no switch
+	
+4. Secure remote Telnet access with a password
+	- configure terminal
+	- line vty 0 15
+	- password [password]
+	- login 
+	
+	(cisco support up to 16 VTY lines that are numbered 0 to 15.
+	
+5. Encrypt all passwords (deve ser logo a 1ª coisa)
+	- configure terminal 
+	- service password-encryption
+	
+	
+banner motd #Unauthorized access to this device is prohibited!#
+
+
+Atribuir IP ao switch:
+
+enable
+configure-terminal
+interface vlan 1
+ip address 172.20.35.68 255.255.255.240
+exit
+
+definir default gateway:
+
+configure-terminal
+ip default-gateway 172.20.35.67
+exit
+
+
+Permitir acesso remoto usando SSH
+
+configure-terminal
+ip domain-name cisco.com
+crypto key generate rsa
+:1024
+username admin password rc
+line vty 0 15
+transport input ssh
+login local
+
+
+Através do pc aceder ao switch por telnet:
+
+	- telnet 172.20.35.68
+	
+Através do pc aceder ao switch por ssh:
+	
+	- ssh -l admin 172.20.35.68
+	
+	pw: rc 
+	
+	
+	
+Criar vlans:
+
+	- configure-terminal
+	- vlan 99
+	- name gestao
+	- exit
+	
+	(repetir este passo para todas as vlans, com o nome apropriado)
+	
+Atribuir portas:
