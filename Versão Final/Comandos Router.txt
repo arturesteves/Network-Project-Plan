@@ -1,0 +1,218 @@
+Comandos Router:
+
+	- hostname RT1.1
+
+	PASSWORDS:
+
+Secure privileged EXEC access with a password
+	- enable
+	- conf terminal
+	- enable secret cisco
+	(Para testar, fazer - disable e depois -enable e depois 
+	deve pedir password. Notar que pede password ao tentar aceder ao modo priveligiado!
+	
+	
+3. Secure user EXEC access with a password
+	- configure terminal
+	- line console 0	(ou console?)
+	- password rc
+	- login
+	(para sair -exit)
+	- Esta password aparece ao entrar no switch
+	
+4. Secure remote Telnet access with a password
+	- configure terminal
+	- line vty 0 15
+	- password rc
+	- login 
+	
+	(cisco support up to 16 VTY lines that are numbered 0 to 15.
+	
+5. Encrypt all passwords (deve ser logo a 1ª coisa)
+	- configure terminal 
+	- service password-encryption
+
+
+banner motd #***Unauthorized access to this device is prohibited!***#
+
+
+Atribuir IP ao router:
+
+Interface interna:
+
+enable
+configure-terminal
+interface fastEthernet 0/0
+ip address 172.20.35.129 255.255.255.0
+no shutdown
+exit
+
+
+Interface externa:
+interface fastEthernet 0/1
+ip address 25.26.27.1 255.255.255.0
+no shutdown
+
+
+
+Permitir acesso remoto usando SSH
+
+configure-terminal
+ip domain-name cisco.com
+crypto key generate rsa
+:1024
+username admin password rc
+line vty 0 15
+transport input ssh
+login local
+
+
+Aceder ao router por ssh:
+
+	- ssh -l admin 172.20.35.129
+	
+Configurar o protocolo de routing RIP, para comunicar com a rede externa
+
+		- router rip
+		- network 25.26.27.1
+		- network 25.26.27.2
+		- exit
+		
+
+		
+		
+Configure interface e subinterfaces f0/0 do router para serem
+os gateways por omissão das diferentes VLAN’s:
+
+Para a vlan 10:
+
+conf t 
+interface F0/0 
+no shutdown
+interface F0/0.10		(subinterface ligada a vlan 10)
+encapsulation dot1q 10  (id da vlan)
+ip address 172.20.35.65 255.255.255.0 (host min da vlan 10 e mascara diferente na parte final)
+
+((((Apareceu a mensagem:
+
+RT1.1(config-subif)#encap
+RT1.1(config-subif)#encapsulation dot1q 10
+RT1.1(config-subif)#ip ad
+RT1.1(config-subif)#ip address 172.20.35.65 255.255.255.0
+% 172.20.35.0 overlaps with FastEthernet0/0
+RT1.1(config-subif)#
+
+))))
+Para a vlan 20:
+(se for tudo de seguinda nao e necessário fazer interface F0/0)
+conf t
+interface F0/0.20
+encapsulation dot1q 20
+ip address 172.20.35.145 255.255.255.0
+end
+
+((((Apareceu a mensagem:
+
+RT1.1(config-subif)#encap
+RT1.1(config-subif)#encapsulation dot1q 10
+RT1.1(config-subif)#ip ad
+RT1.1(config-subif)#ip address 172.20.35.65 255.255.255.0
+% 172.20.35.0 overlaps with FastEthernet0/0
+RT1.1(config-subif)#
+
+))))
+
+Depois disto será suposto comunicar entre as vlans 10 e 20, certo?
+
+
+
+/*
+Para depois de a parte cima estar bem configurada
+
+
+DHCP no router */
+
+DHCP VLAN 90
+------------
+id dhcp excluded-address 172.20.35.2 172.20.35.62  (Coloco sempre a começar no 2º? por causa do default gateway?)
+id dgcp pool VLAN_90  (Nome da pool)
+network 172.20.35.1 255.255.255.0
+default-router 172.20.35.2	(2º endereço)
+dns-server 172.20.35.3 
+
+DHCP VLAN 10
+------------
+id dhcp excluded-address 172.20.35.66 172.20.35.126  (Coloco sempre a começar no 2º? por causa do default gateway?)
+id dgcp pool VLAN_10  (Nome da pool)
+network 172.20.35.67 255.255.255.0
+default-router 172.20.35.66	(2º endereço)
+dns-server 172.20.35.67 
+
+DHCP VLAN 99
+------------
+id dhcp excluded-address 172.20.35.129 172.20.35.142  (Coloco sempre a começar no 2º? por causa do default gateway?)
+id dgcp pool VLAN_99  (Nome da pool)
+network 172.20.35.130 255.255.255.0
+default-router 172.20.35.129	(2º endereço)
+dns-server 172.20.35.130
+
+DHCP VLAN 20
+------------
+id dhcp excluded-address 172.20.35.145 172.20.35.158  (Coloco sempre a começar no 2º? por causa do default gateway?)
+id dgcp pool VLAN_20  (Nome da pool)
+network 172.20.35.146 255.255.255.0
+default-router 172.20.35.145	(2º endereço)
+dns-server 172.20.35.146
+
+DHCP VLAN 30
+------------
+id dhcp excluded-address 172.20.35.161 172.20.35.174  (Coloco sempre a começar no 2º? por causa do default gateway?)
+id dgcp pool VLAN_30  (Nome da pool)
+network 172.20.35.162 255.255.255.0
+default-router 172.20.35.161	(2º endereço)
+dns-server 172.20.35.162
+
+DHCP VLAN 60
+------------
+id dhcp excluded-address 172.20.35.177 172.20.35.190  (Coloco sempre a começar no 2º? por causa do default gateway?)
+id dgcp pool VLAN_60  (Nome da pool)
+network 172.20.35.178 255.255.255.0
+default-router 172.20.35.177	(2º endereço)
+dns-server 172.20.35.178
+
+DHCP VLAN 70
+------------
+id dhcp excluded-address 172.20.35.193 172.20.35.206  (Coloco sempre a começar no 2º? por causa do default gateway?)
+id dgcp pool VLAN_70  (Nome da pool)
+network 172.20.35.194 255.255.255.0
+default-router 172.20.35.193	(2º endereço)
+dns-server 172.20.35.194
+
+DHCP VLAN 40
+------------
+id dhcp excluded-address 172.20.35.209 172.20.35.214  (Coloco sempre a começar no 2º? por causa do default gateway?)
+id dgcp pool VLAN_40  (Nome da pool)
+network 172.20.35.210 255.255.255.0
+default-router 172.20.35.209	(2º endereço)
+dns-server 172.20.35.210
+
+DHCP VLAN 50
+------------
+id dhcp excluded-address 172.20.35.217 172.20.35.222  (Coloco sempre a começar no 2º? por causa do default gateway?)
+id dgcp pool VLAN_50  (Nome da pool)
+network 172.20.35.218 255.255.255.0
+default-router 172.20.35.217	(2º endereço)
+dns-server 172.20.35.218
+
+DHCP VLAN 80
+------------
+id dhcp excluded-address 172.20.35.225 172.20.35.230  (Coloco sempre a começar no 2º? por causa do default gateway?)
+id dgcp pool VLAN_80  (Nome da pool)
+network 172.20.35.226 255.255.255.0
+default-router 172.20.35.225	(2º endereço)
+dns-server 172.20.35.226
+
+
+
+FIM DHCP
+*/

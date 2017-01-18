@@ -1,4 +1,4 @@
-Começar a atribuir portas a partir da 3.
+﻿Começar a atribuir portas a partir da 3.
 Tenho 10 vlans -> vou atribuir 2 portas a cada vlan
 -> as ultimas duas vlans so vao ter uma porta atribuida?
 
@@ -27,7 +27,7 @@ Configurar nome do host.
 2. Secure privileged EXEC access with a password
 	- enable
 	- conf terminal
-	- enable secret [PASSWORD]
+	- enable secret cisco
 	(Para testar, fazer - disable e depois -enable e depois 
 	deve pedir password. Notar que pede password ao tentar aceder ao modo priveligiado!
 	
@@ -35,7 +35,7 @@ Configurar nome do host.
 3. Secure user EXEC access with a password
 	- configure terminal
 	- line console 0	(ou console?)
-	- password [password]
+	- password rc
 	- login
 	(para sair -exit)
 	- Esta password aparece ao entrar no switch
@@ -43,8 +43,12 @@ Configurar nome do host.
 4. Secure remote Telnet access with a password
 	- configure terminal
 	- line vty 0 15
-	- password [password]
+	- password rc
+	- transport input telnet
 	- login 
+	
+	/* depois da ligação por ssh ser configurada, o acesso por telnet
+	fica bloqueado */
 	
 	(cisco support up to 16 VTY lines that are numbered 0 to 15.
 	
@@ -53,7 +57,7 @@ Configurar nome do host.
 	- service password-encryption
 	
 	
-banner motd #Unauthorized access to this device is prohibited!#
+banner motd #***Unauthorized access to this device is prohibited!***#
 
 
 Atribuir IP ao switch:
@@ -61,13 +65,14 @@ Atribuir IP ao switch:
 enable
 configure-terminal
 interface vlan 1
-ip address 172.20.35.68 255.255.255.240
+ip address 172.20.35.130 255.255.255.240
+no shutdown
 exit
 
 definir default gateway:
 
 configure-terminal
-ip default-gateway 172.20.35.67
+ip default-gateway 172.20.35.129
 exit
 
 
@@ -85,30 +90,92 @@ login local
 
 Através do pc aceder ao switch por telnet:
 
-	- telnet 172.20.35.68
+	- telnet 172.20.35.130
 	
 Através do pc aceder ao switch por ssh:
 	
-	- ssh -l admin 172.20.35.68
+	- ssh -l admin 172.20.35.130
 	
 	pw: rc 
 	
 	
+
 	
 Criar vlans:
-
-	- configure-terminal
-	- vlan 99
-	- name gestao
-	- exit
+	vlan 90
+	name gestao 
+	exit 
 	
-	(repetir este passo para todas as vlans, com o nome apropriado)
+	(isto para todas as vlans)
+	
+	(verificar as vlans - show vlan)
 	
 Atribuir portas:
 
+(VLAN 10 - desenvolvimento)
+	- Portas: 3 e 4 
+	
+(VLAN 20 - administracao)
+	- Portas: 5 e 6
+	
+(VLAN 99 - gestao)
+	- Portas: 1 e 2 ??????????????
+	
+(VLAN 90 - VOIP)
+	- Portas: 9
+		
+(VLAN 30 - comercial)
+	- Portas: 10 e 11
+	
+(VLAN 40 - recepcao)
+	- Portas: 12 e 13
+	
+(VLAN 50 - area-financeira)
+	- Portas: 14 e 15
+	
+(VLAN 60 - reunioes)
+	- Portas: 16 e 17
+	
+(VLAN 80 - perifericoes)
+	- Portas: 18 e 19
+
+	
+Atribuir portas (comando):
+
 	- interface range F0/3 - 4
 	- switchport mode access
-	- switchport access vlan 99
+	- switchport access vlan 10
 	
+(A vlan 80 e 90 apenas têm uma porta atribuida, de modo a ficarem 4 portas livres no switch)
+	ou seja vou deixar 1/6 das portas livres e não 1/4
+
+
+Criar a ligação trunk entre o switch e o router:
+		- interface F0/1
+		- switchport mode trunk
+		- end
 	
+????
+Configuração das VLANS para terem acesso à internet (pelo menos conseguem
+chegar ao router)
+
+(Qual o propósito desta configuração?
+	- interface vlan 20
+	- ip address 172.20.35.146 255.255.255.0  
+	(o ip é o host min desta vlan e a mascara, nao e a exacta)
+	- 
+)
+????
+
 	
+
+
+
+
+
+
+	
+As portas não usadas usar o comando: (desactivei desde a porta 21 até à 24 - portas livres)
+	- interface FastEhernet0/21
+	- shudown
+	Assim a porta 21 dfica desativada, boa prática a seguir quando uma porta não esteja a ser utilizada
