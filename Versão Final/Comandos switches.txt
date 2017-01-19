@@ -122,22 +122,22 @@ Atribuir portas:
 	- Portas: 1 e 2 ??????????????
 	
 (VLAN 90 - VOIP)
-	- Portas: 9
+	- Portas: 7
 		
 (VLAN 30 - comercial)
-	- Portas: 10 e 11
+	- Portas: 8 e 9
 	
 (VLAN 40 - recepcao)
-	- Portas: 12 e 13
+	- Portas: 10 e 11
 	
 (VLAN 50 - area-financeira)
-	- Portas: 14 e 15
+	- Portas: 12 e 13
 	
 (VLAN 60 - reunioes)
-	- Portas: 16 e 17
+	- Portas: 14 e 15
 	
 (VLAN 80 - perifericoes)
-	- Portas: 18 e 19
+	- Portas: 16 e 17
 
 	
 Atribuir portas (comando):
@@ -155,16 +155,10 @@ Criar a ligação trunk entre o switch e o router:
 		- switchport mode trunk
 		- end
 	
-????
-Configuração das VLANS para terem acesso à internet (pelo menos conseguem
-chegar ao router)
 
-(Qual o propósito desta configuração?
-	- interface vlan 20
-	- ip address 172.20.35.146 255.255.255.0  
-	(o ip é o host min desta vlan e a mascara, nao e a exacta)
-	- 
-)
+
+(representar 3 switches, 2 pcs por switch e outro noutro switch, na mesma vlan)
+
 ????
 
 	

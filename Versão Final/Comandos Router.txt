@@ -43,14 +43,14 @@ Interface interna:
 enable
 configure-terminal
 interface fastEthernet 0/0
-ip address 172.20.35.129 255.255.255.0
+ip address 172.20.35.132 255.255.255.240
 no shutdown
 exit
 
 
 Interface externa:
 interface fastEthernet 0/1
-ip address 25.26.27.1 255.255.255.0
+ip address 25.26.27.1 255.255.255.252
 no shutdown
 
 
@@ -74,10 +74,11 @@ Aceder ao router por ssh:
 Configurar o protocolo de routing RIP, para comunicar com a rede externa
 
 		- router rip
-		- network 25.26.27.1
-		- network 25.26.27.2
+		- network 25.26.27.0  /30
+		- network 172.20.35.0  /24
 		- exit
 		
+		pRECISA de mascara a frente? a da rede.
 
 		
 		
