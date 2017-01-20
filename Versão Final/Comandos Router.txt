@@ -43,10 +43,10 @@ Interface interna:
 enable
 configure-terminal
 interface fastEthernet 0/0
-ip address 172.20.35.132 255.255.255.240
+ip address 172.20.35.133 255.255.255.240
 no shutdown
 exit
-
+(131 sera para o 2º switch, e 132 para o 3º)
 
 Interface externa:
 interface fastEthernet 0/1
@@ -69,16 +69,16 @@ login local
 
 Aceder ao router por ssh:
 
-	- ssh -l admin 172.20.35.129
+	- ssh -l admin 172.20.35.133
 	
 Configurar o protocolo de routing RIP, para comunicar com a rede externa
 
 		- router rip
-		- network 25.26.27.0  /30
-		- network 172.20.35.0  /24
+		- network 25.26.27.0  
+		- network 172.20.35.0  
 		- exit
-		
-		pRECISA de mascara a frente? a da rede.
+(sao as redes de dentro e de fora)...		
+Vi exemplos e nao era utilizada a mascara
 
 		
 		
@@ -92,41 +92,111 @@ interface F0/0
 no shutdown
 interface F0/0.10		(subinterface ligada a vlan 10)
 encapsulation dot1q 10  (id da vlan)
-ip address 172.20.35.65 255.255.255.0 (host min da vlan 10 e mascara diferente na parte final)
+ip address 172.20.35.65 255.255.255.192 (host min da vlan 10 e mascara diferente na parte final)
 
-((((Apareceu a mensagem:
 
-RT1.1(config-subif)#encap
-RT1.1(config-subif)#encapsulation dot1q 10
-RT1.1(config-subif)#ip ad
-RT1.1(config-subif)#ip address 172.20.35.65 255.255.255.0
-% 172.20.35.0 overlaps with FastEthernet0/0
-RT1.1(config-subif)#
 
-))))
 Para a vlan 20:
 (se for tudo de seguinda nao e necessário fazer interface F0/0)
 conf t
 interface F0/0.20
 encapsulation dot1q 20
-ip address 172.20.35.145 255.255.255.0
+ip address 172.20.35.145 255.255.255.240
 end
 
-((((Apareceu a mensagem:
 
-RT1.1(config-subif)#encap
-RT1.1(config-subif)#encapsulation dot1q 10
-RT1.1(config-subif)#ip ad
-RT1.1(config-subif)#ip address 172.20.35.65 255.255.255.0
-% 172.20.35.0 overlaps with FastEthernet0/0
-RT1.1(config-subif)#
+Para a vlan 30:
+(se for tudo de seguinda nao e necessário fazer interface F0/0)
+conf t
+interface F0/0.30
+encapsulation dot1q 30
+ip address 172.20.35.161 255.255.255.240
+end
 
-))))
+
+Para a vlan 40:
+(se for tudo de seguinda nao e necessário fazer interface F0/0)
+conf t
+interface F0/0.40
+encapsulation dot1q 40
+ip address 172.20.35.209 255.255.255.248
+end
+
+
+Para a vlan 50:
+(se for tudo de seguinda nao e necessário fazer interface F0/0)
+conf t
+interface F0/0.50
+encapsulation dot1q 50
+ip address 172.20.35.217 255.255.255.248
+end
+
+
+Para a vlan 60:
+(se for tudo de seguinda nao e necessário fazer interface F0/0)
+conf t
+interface F0/0.60
+encapsulation dot1q 60
+ip address 172.20.35.177 255.255.255.240
+end
+
+
+Para a vlan 70:
+(se for tudo de seguinda nao e necessário fazer interface F0/0)
+conf t
+interface F0/0.70
+encapsulation dot1q 70
+ip address 172.20.35.193 255.255.255.240
+end
+
+
+Para a vlan 80:
+(se for tudo de seguinda nao e necessário fazer interface F0/0)
+conf t
+interface F0/0.80
+encapsulation dot1q 80
+ip address 172.20.35.225 255.255.255.248
+end
+
+
+Para a vlan 90:
+(se for tudo de seguinda nao e necessário fazer interface F0/0)
+conf t
+interface F0/0.90
+encapsulation dot1q 90
+ip address 172.20.35.1 255.255.255.192
+end
+
+
+
+DÚVIDA!!!!!!!!!!!!!!!!!!!!!!!
+
+Para a vlan 99:
+(se for tudo de seguinda nao e necessário fazer interface F0/0)
+conf t
+interface F0/0.99
+encapsulation dot1q 99
+ip address 172.20.35.129 255.255.255.192
+end
+;; vai colidir com o endereço na FASTENETER 0/0
 
 Depois disto será suposto comunicar entre as vlans 10 e 20, certo?
 
 
 
+CUIDADO, OS ENDEREÇOS JA ATRIBUIDOS, NAO PODEM
+ESTAR NA POOL DE ENDEREÇOS
+
+
+
+/*
+DNS SERVER
+
+Configurar um Servidor de DNS
+R1(config)# ip name-server ip_address (garantir ligação ao server)
+R1(config)# ip domain-lookup
+
+*/
 /*
 Para depois de a parte cima estar bem configurada
 
@@ -136,7 +206,7 @@ DHCP no router */
 DHCP VLAN 90
 ------------
 id dhcp excluded-address 172.20.35.2 172.20.35.62  (Coloco sempre a começar no 2º? por causa do default gateway?)
-id dgcp pool VLAN_90  (Nome da pool)
+id dhcp pool VLAN_90  (Nome da pool)
 network 172.20.35.1 255.255.255.0
 default-router 172.20.35.2	(2º endereço)
 dns-server 172.20.35.3 

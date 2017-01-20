@@ -59,51 +59,10 @@ Configurar nome do host.
 	
 banner motd #***Unauthorized access to this device is prohibited!***#
 
-
-Atribuir IP ao switch:
-
-enable
-configure-terminal
-interface vlan 1
-ip address 172.20.35.130 255.255.255.240
-no shutdown
-exit
-
-definir default gateway:
-
-configure-terminal
-ip default-gateway 172.20.35.129
-exit
-
-
-Permitir acesso remoto usando SSH
-
-configure-terminal
-ip domain-name cisco.com
-crypto key generate rsa
-:1024
-username admin password rc
-line vty 0 15
-transport input ssh
-login local
-
-
-Através do pc aceder ao switch por telnet:
-
-	- telnet 172.20.35.130
-	
-Através do pc aceder ao switch por ssh:
-	
-	- ssh -l admin 172.20.35.130
-	
-	pw: rc 
-	
-	
-
 	
 Criar vlans:
 	vlan 90
-	name gestao 
+	name VOIP 
 	exit 
 	
 	(isto para todas as vlans)
@@ -118,27 +77,32 @@ Atribuir portas:
 (VLAN 20 - administracao)
 	- Portas: 5 e 6
 	
+(VLAN 30 - comercial)
+	- Portas: 7 E 8	
+	
+(VLAN 40 - recepcao)
+	- Portas: 9 e 10	
+	
+(VLAN 50 - area-financeira)
+	- Portas: 11 e 12
+		
+(VLAN 60 - reunioes)
+	- Portas: 13 e 14
+	
+(VLAN 70 - reunioes)
+	- Portas: 15
+	
+(VLAN 80 - perifericoes)
+	- Portas: 16 e 17	
+	
+(VLAN 90 - VOIP)
+	- Portas: 18
+	
 (VLAN 99 - gestao)
 	- Portas: 1 e 2 ??????????????
 	
-(VLAN 90 - VOIP)
-	- Portas: 7
-		
-(VLAN 30 - comercial)
-	- Portas: 8 e 9
-	
-(VLAN 40 - recepcao)
-	- Portas: 10 e 11
-	
-(VLAN 50 - area-financeira)
-	- Portas: 12 e 13
-	
-(VLAN 60 - reunioes)
-	- Portas: 14 e 15
-	
-(VLAN 80 - perifericoes)
-	- Portas: 16 e 17
 
+		
 	
 Atribuir portas (comando):
 
@@ -150,13 +114,68 @@ Atribuir portas (comando):
 	ou seja vou deixar 1/6 das portas livres e não 1/4
 
 
+	
+	
+
+Permitir acesso remoto usando SSH
+
+configure-terminal
+ip domain-name cisco.com
+crypto key generate rsa
+:1024
+username admin password rc
+line vty 0 15
+transport input ssh
+login local
+
+
+
+Atribuir IP ao switch:
+
+enable
+configure-terminal
+interface vlan 99	(vlan gestao)
+ip address 172.20.35.130 255.255.255.240
+no shutdown
+exit
+
+definir default gateway:
+
+configure-terminal
+ip default-gateway 172.20.35.129
+exit
+
+
+Através do pc aceder ao switch por telnet:
+
+	- telnet 172.20.35.130
+	
+Através do pc aceder ao switch por ssh:
+	
+	- ssh -l admin 172.20.35.130
+	
+	pw: rc 
+	
+############
+(Ao introduzir os dados até aqui e confirmar o ip e mascara do 1º pc da vlan
+desenvolvimento, o pc nao consegue aceder por ssh ao switch.)	
+############
+	
+	
+	
+	
+	
+	
+	
 Criar a ligação trunk entre o switch e o router:
 		- interface F0/1
 		- switchport mode trunk
 		- end
 	
-
-
+	
+###################################
+# switchport trunk native vlan 99 #	-> qual seriam as consequencias?
+###################################
 (representar 3 switches, 2 pcs por switch e outro noutro switch, na mesma vlan)
 
 ????
@@ -165,6 +184,76 @@ Criar a ligação trunk entre o switch e o router:
 
 
 
+##################################################
+No 2º switch
+
+
+
+criar VLAN 99 - gestao:
+	- vlan 99
+	- name gestao
+	- interface F0/19
+	- switchport mode access
+	- switchport access vlan 99
+	- exit
+
+criar vlan 10:
+
+	- vlan 10
+	- name desenvolvimento
+	- exit
+	
+	- interface range F0/3 - 4
+	- switchport mode access
+	- switchport access vlan 10
+	- exit
+	
+	
+	
+	
+DÚVIDA!!!!
+(como ligar as vlans dos 2 switches?)
+(como definir a porta trunk???!!!)
+	
+	
+Atribuir IP ao switch:
+
+enable
+configure-terminal
+interface vlan 99	(vlan gestao)
+ip address 172.20.35.131 255.255.255.240
+no shutdown
+exit
+
+definir default gateway:
+
+configure-terminal
+ip default-gateway 172.20.35.129
+exit
+	
+
+DÚVIDA!!!	
+Tentar configurar a porta trunk do 2º switch:
+
+	- interface f0/1
+	- switchport mode trunk
+
+(check: show interface trunk)
+
+	
+
+	
+##############################################
+Ip do 3º switch: 132 
+
+
+
+IPS...
+SW1.1:172.20.35.130
+SW1.2:172.20.35.131
+SW1.3:172.20.35.132
+RT1.1:172.20.35.133
+	
 
 
 
