@@ -241,7 +241,7 @@ Tentar configurar a porta trunk do 2º switch:
 (check: show interface trunk)
 
 	
-
+(Problema com a vlan99, pq como tiro de la alguns ipcs para postos depois ao fazer pedidos para alem do switch, estes nao sao efectuados.
 	
 ##############################################
 Ip do 3º switch: 132 

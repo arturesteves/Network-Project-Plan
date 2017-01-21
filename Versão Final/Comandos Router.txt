@@ -187,7 +187,17 @@ Depois disto será suposto comunicar entre as vlans 10 e 20, certo?
 CUIDADO, OS ENDEREÇOS JA ATRIBUIDOS, NAO PODEM
 ESTAR NA POOL DE ENDEREÇOS
 
+http://www.brocade.com/content/html/en/configuration-guide/NI_05800a_SECURITY/GUID-B3719C59-9A29-4917-983E-3926C29EF43D.html
+https://learningnetwork.cisco.com/thread/47315
+https://supportforums.cisco.com/discussion/12738481/restrict-cisco-switch-ssh-access-ips
 
+
+/*
+Limitar access por causa do ssh:
+
+
+
+*/
 
 /*
 DNS SERVER
