@@ -1,0 +1,19 @@
+VLAN das impressoras não faz uso do dhcp
+
+a VLAN gestao so tem na pool 3 ou 4 endereços
+
+
+cisco:
+
+	http://www.cisco.com/c/en/us/support/docs/security/ios-firewall/23602-confaccesslists.html
+	http://www.brocade.com/content/html/en/configuration-guide/NI_05800a_SECURITY/GUID-B3719C59-9A29-4917-983E-3926C29EF43D.html
+	http://www.cisco.com/c/en/us/support/docs/security/ios-firewall/23602-confaccesslists.html
+	
+	https://www.youtube.com/watch?v=LfM6wcGN5PA	-> voip with server
+	
+	
+	https://www.youtube.com/watch?v=GZgBqivAuHU
+	https://www.youtube.com/watch?v=h3uh68ky7Us
+	https://www.youtube.com/watch?v=Q12B89N5Ers
+	
+	router dhcp packet tracer and call manager

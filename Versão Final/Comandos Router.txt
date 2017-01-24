@@ -214,16 +214,20 @@ Para depois de a parte cima estar bem configurada
 DHCP no router */
 
 
-IP: 172.20.35.66
-MASK: 255.255.255.192
-DEFAULT.GATEWAY: 172.20.35.65
 
+Vlans com dhcp:
+	- vlan 10, 20, 30, 40, 50, 60, 70, 90, 99
+	
+Vlans sem dhcp:
+	- vlan 80 (perifericos)
+	
+	
 DHCP VLAN 10
 ------------
-ip dhcp excluded-address 172.20.35.65	(este é excluido, certo?)
-ip dhcp pool VLAN_10_desenvolvimento  (Nome da pool)
-network 172.20.35.66 255.255.255.192	(Este é o 1º endereço a atribuir?)
-default-router 172.20.35.65	(1º endereço - default gateway)
+ip dhcp excluded-address 172.20.35.65	
+ip dhcp pool VLAN_10_desenvolvimento  
+network 172.20.35.66 255.255.255.192	
+default-router 172.20.35.65	
 ;;dns-server 172.20.35.67 
 
 DHCP VLAN 70
@@ -232,10 +236,55 @@ ip dhcp excluded-address 172.20.35.193
 ip dhcp pool VLAN_70_guest
 network 172.20.35.194 255.255.255.240
 default-router 172.20.35.193	
-;dns-server 172.20.35.194
 
 
-DHCP VLAN 90
+DHCP VLAN 20
+------------
+ip dhcp excluded-address 172.20.35.145 
+id dgcp pool VLAN_20_administracao
+network 172.20.35.146 255.255.255.240
+default-router 172.20.35.145	
+;;dns-server 172.20.35.146
+
+DHCP VLAN 30
+------------
+id dhcp excluded-address 172.20.35.161
+id dgcp pool VLAN_30_comercial
+network 172.20.35.162 255.255.255.240
+default-router 172.20.35.161	
+;;dns-server 172.20.35.162
+
+DHCP VLAN 40
+------------
+id dhcp excluded-address 172.20.35.209 
+id dgcp pool VLAN_40_recepcao
+network 172.20.35.210 255.255.255.248
+default-router 172.20.35.209	
+;;dns-server 172.20.35.210
+
+
+DHCP VLAN 50
+------------
+id dhcp excluded-address 172.20.35.217 
+id dgcp pool VLAN_50_area-financeira
+network 172.20.35.218 255.255.255.248
+default-router 172.20.35.217	
+;;dns-server 172.20.35.218
+
+
+DHCP VLAN 60
+------------
+id dhcp excluded-address 172.20.35.177 
+id dgcp pool VLAN_60_reunioes
+network 172.20.35.178 255.255.255.240
+default-router 172.20.35.177
+;dns-server 172.20.35.178
+
+
+DHCP VLAN 80	-> Não é configurado o dhcp para esta vlan!
+
+------------------ 
+DHCP VLAN 90	
 ------------
 ;ip dhcp excluded-address 172.20.35.1
 ip dhcp pool VLAN_90_VOIP
@@ -243,80 +292,48 @@ network 172.20.35.1 255.255.255.192
 default-router 172.20.35.1	
 
 
-(ver como criar 
 
-no router -> telephony service
-
-
-
-
-
-----
-
-
-
-
-
+___VER QUE GAMA DE ENDEREÇOS DEIXAR DE FORA
 
 DHCP VLAN 99
 ------------
-id dhcp excluded-address 172.20.35.129 172.20.35.142  (Coloco sempre a começar no 2º? por causa do default gateway?)
-id dgcp pool VLAN_99  (Nome da pool)
-network 172.20.35.130 255.255.255.0
-default-router 172.20.35.129	(2º endereço)
-dns-server 172.20.35.130
-
-DHCP VLAN 20
-------------
-id dhcp excluded-address 172.20.35.145 172.20.35.158  (Coloco sempre a começar no 2º? por causa do default gateway?)
-id dgcp pool VLAN_20  (Nome da pool)
-network 172.20.35.146 255.255.255.0
-default-router 172.20.35.145	(2º endereço)
-dns-server 172.20.35.146
-
-DHCP VLAN 30
-------------
-id dhcp excluded-address 172.20.35.161 172.20.35.174  (Coloco sempre a começar no 2º? por causa do default gateway?)
-id dgcp pool VLAN_30  (Nome da pool)
-network 172.20.35.162 255.255.255.0
-default-router 172.20.35.161	(2º endereço)
-dns-server 172.20.35.162
-
-DHCP VLAN 60
-------------
-id dhcp excluded-address 172.20.35.177 172.20.35.190  (Coloco sempre a começar no 2º? por causa do default gateway?)
-id dgcp pool VLAN_60  (Nome da pool)
-network 172.20.35.178 255.255.255.0
-default-router 172.20.35.177	(2º endereço)
-dns-server 172.20.35.178
+id dhcp excluded-address 172.20.35.129 172.20.35.137 // ja estao ocupados 4 endereços, assim deixa livres mais 4 endereços; ficando 5 endereços na pool 
+id dgcp pool VLAN_99_gestao
+network 172.20.35.138 255.255.255.240
+default-router 172.20.35.129	
 
 
+--------------------------------------------------------------------------------------------------------------------------------------------
+Garantir que so a malta da vlan gestao consegue aceder ao router remotamente para configuração
 
-DHCP VLAN 40
-------------
-id dhcp excluded-address 172.20.35.209 172.20.35.214  (Coloco sempre a começar no 2º? por causa do default gateway?)
-id dgcp pool VLAN_40  (Nome da pool)
-network 172.20.35.210 255.255.255.0
-default-router 172.20.35.209	(2º endereço)
-dns-server 172.20.35.210
+access-list 1 deny any
+access-list 1 permit 172.20.35.129 0.0.0.240	//Só permite endereços que estejam entre 172.20.35.129 - 172.20.35.142		-> CERTEZA?
 
-DHCP VLAN 50
-------------
-id dhcp excluded-address 172.20.35.217 172.20.35.222  (Coloco sempre a começar no 2º? por causa do default gateway?)
-id dgcp pool VLAN_50  (Nome da pool)
-network 172.20.35.218 255.255.255.0
-default-router 172.20.35.217	(2º endereço)
-dns-server 172.20.35.218
 
-DHCP VLAN 80
-------------
-id dhcp excluded-address 172.20.35.225 172.20.35.230  (Coloco sempre a começar no 2º? por causa do default gateway?)
-id dgcp pool VLAN_80  (Nome da pool)
-network 172.20.35.226 255.255.255.0
-default-router 172.20.35.225	(2º endereço)
-dns-server 172.20.35.226
+Depois das restrições definidas, tenho que aplicá-las às linhas vty !!
+
+line vty 0 15						
+access-class 1 in 				-> ISTO ESTRAGOU O acesso via ssh por todos os pcs
+transport input ssh
+https://slaptijack.com/networking/securing-virtual-terminal-vty-lines/		-> DÚVIDA
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+access-list 1 deny any	
+	
+access-list 1 permit 172.20.35.129 0.0.0.240	//Só permite endereços que estejam entre 172.20.35.129 - 172.20.35.142	
+						//129 é o 1º endereço válido
+ssh access-group 1
+write memory
 
 
 
-FIM DHCP
-*/
+
+
+
+
+
+
+
+
+
