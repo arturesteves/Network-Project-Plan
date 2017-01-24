@@ -226,8 +226,18 @@ network 172.20.35.66 255.255.255.192	(Este é o 1º endereço a atribuir?)
 default-router 172.20.35.65	(1º endereço - default gateway)
 ;;dns-server 172.20.35.67 
 
+DHCP VLAN 70
+------------
+ip dhcp excluded-address 172.20.35.193 
+ip dhcp pool VLAN_70_guest
+network 172.20.35.194 255.255.255.240
+default-router 172.20.35.193	
+;dns-server 172.20.35.194
 
 
+
+
+----
 
 
 
@@ -275,13 +285,7 @@ network 172.20.35.178 255.255.255.0
 default-router 172.20.35.177	(2º endereço)
 dns-server 172.20.35.178
 
-DHCP VLAN 70
-------------
-id dhcp excluded-address 172.20.35.193 172.20.35.206  (Coloco sempre a começar no 2º? por causa do default gateway?)
-id dgcp pool VLAN_70  (Nome da pool)
-network 172.20.35.194 255.255.255.0
-default-router 172.20.35.193	(2º endereço)
-dns-server 172.20.35.194
+
 
 DHCP VLAN 40
 ------------
