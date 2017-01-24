@@ -1,0 +1,133 @@
+!
+version 12.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname RT1.1
+!
+!
+!
+enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+!
+!
+ip dhcp excluded-address 172.20.35.65
+!
+ip dhcp pool VLAN_10_desenvolvimento
+ network 172.20.35.64 255.255.255.192
+ default-router 172.20.35.65
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+username admin password 7 08334F
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain-name cisco.com
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 172.20.35.133 255.255.255.240
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 172.20.35.65 255.255.255.192
+!
+interface FastEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 172.20.35.145 255.255.255.240
+!
+interface FastEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 172.20.35.161 255.255.255.240
+!
+interface FastEthernet0/0.40
+ encapsulation dot1Q 40
+ ip address 172.20.35.209 255.255.255.248
+!
+interface FastEthernet0/0.50
+ encapsulation dot1Q 50
+ ip address 172.20.35.217 255.255.255.248
+!
+interface FastEthernet0/0.60
+ encapsulation dot1Q 60
+ ip address 172.20.35.177 255.255.255.240
+!
+interface FastEthernet0/0.70
+ encapsulation dot1Q 70
+ ip address 172.20.35.193 255.255.255.240
+!
+interface FastEthernet0/0.80
+ encapsulation dot1Q 80
+ ip address 172.20.35.225 255.255.255.248
+!
+interface FastEthernet0/0.90
+ encapsulation dot1Q 90
+ ip address 172.20.35.1 255.255.255.192
+!
+interface FastEthernet0/0.99
+ encapsulation dot1Q 99
+ no ip address
+!
+interface FastEthernet0/1
+ ip address 25.26.27.1 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router rip
+ network 25.0.0.0
+ network 172.20.0.0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ***Unauthorized access to this device is prohibited!***
+!
+!
+!
+!
+line con 0
+ password 7 08334F
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password 7 08334F
+ login local
+ transport input ssh
+line vty 5 15
+ password 7 08334F
+ login local
+ transport input ssh
+!
+!
+!
+end
+

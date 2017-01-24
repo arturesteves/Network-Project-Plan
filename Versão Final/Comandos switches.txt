@@ -89,7 +89,7 @@ Atribuir portas:
 (VLAN 60 - reunioes)
 	- Portas: 13 e 14
 	
-(VLAN 70 - reunioes)
+(VLAN 70 - guest)
 	- Portas: 15
 	
 (VLAN 80 - perifericoes)
@@ -130,6 +130,7 @@ login local
 
 
 
+(ATRIBUIR APENAS O IP E O DEFAULT GATEWAY AO SWITCH, após configurar as subinterfaces no router!!!)
 Atribuir IP ao switch:
 
 enable
@@ -221,7 +222,7 @@ Atribuir IP ao switch:
 enable
 configure-terminal
 interface vlan 99	(vlan gestao)
-ip address 172.20.35.131 255.255.255.240
+ip address 172.20.35.130 255.255.255.240
 no shutdown
 exit
 

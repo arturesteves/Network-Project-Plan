@@ -14,7 +14,7 @@ Secure privileged EXEC access with a password
 	
 3. Secure user EXEC access with a password
 	- configure terminal
-	- line console 0	(ou console?)
+	- line console 0	
 	- password rc
 	- login
 	(para sair -exit)
@@ -176,7 +176,7 @@ Para a vlan 99:
 conf t
 interface F0/0.99
 encapsulation dot1q 99
-ip address 172.20.35.129 255.255.255.192
+ip address 172.20.35.129 255.255.255.240
 end
 ;; vai colidir com o endereço na FASTENETER 0/0
 
@@ -213,21 +213,35 @@ Para depois de a parte cima estar bem configurada
 
 DHCP no router */
 
-DHCP VLAN 90
-------------
-id dhcp excluded-address 172.20.35.2 172.20.35.62  (Coloco sempre a começar no 2º? por causa do default gateway?)
-id dhcp pool VLAN_90  (Nome da pool)
-network 172.20.35.1 255.255.255.0
-default-router 172.20.35.2	(2º endereço)
-dns-server 172.20.35.3 
+
+IP: 172.20.35.66
+MASK: 255.255.255.192
+DEFAULT.GATEWAY: 172.20.35.65
 
 DHCP VLAN 10
 ------------
-id dhcp excluded-address 172.20.35.66 172.20.35.126  (Coloco sempre a começar no 2º? por causa do default gateway?)
-id dgcp pool VLAN_10  (Nome da pool)
-network 172.20.35.67 255.255.255.0
-default-router 172.20.35.66	(2º endereço)
-dns-server 172.20.35.67 
+ip dhcp excluded-address 172.20.35.65	(este é excluido, certo?)
+ip dhcp pool VLAN_10_desenvolvimento  (Nome da pool)
+network 172.20.35.66 255.255.255.192	(Este é o 1º endereço a atribuir?)
+default-router 172.20.35.65	(1º endereço - default gateway)
+;;dns-server 172.20.35.67 
+
+
+
+
+
+
+
+DHCP VLAN 90
+------------
+;id dhcp excluded-address 172.20.35.2 172.20.35.62  (Coloco sempre a começar no 2º? por causa do default gateway?)
+
+;ip dhcp excluded-address 172.20.35.1	;; estou a excluir apenas o 1º
+id dhcp pool VLAN_90_ (Nome da pool)
+network 172.20.35.1 255.255.255.192
+default-router 172.20.35.2	(2º endereço)
+;;;dns-server 172.20.35.3 
+
 
 DHCP VLAN 99
 ------------
