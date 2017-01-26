@@ -90,6 +90,9 @@ Para a vlan 10:
 conf t 
 interface F0/0 
 no shutdown
+
+
+
 interface F0/0.10		(subinterface ligada a vlan 10)
 encapsulation dot1q 10  (id da vlan)
 ip address 172.20.35.65 255.255.255.192 (host min da vlan 10 e mascara diferente na parte final)
