@@ -92,14 +92,14 @@ Atribuir portas:
 (VLAN 70 - guest)
 	- Portas: 15
 	
-(VLAN 80 - perifericoes)
-	- Portas: 16 e 17	
+(VLAN 80 - perifericoes)	_> WRONG
+	- Portas: 16 e 17		
 	
 (VLAN 90 - VOIP)
 	- Portas: 18
 	
 (VLAN 99 - gestao)
-	- Portas: 1 e 2 ??????????????
+	- Portas: 19
 	
 
 		

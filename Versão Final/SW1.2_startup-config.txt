@@ -4,7 +4,7 @@ no service timestamps log datetime msec
 no service timestamps debug datetime msec
 service password-encryption
 !
-hostname SW1.1
+hostname SW1.2
 !
 enable secret 5 cisco
 !
