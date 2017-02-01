@@ -110,6 +110,12 @@ Atribuir portas (comando):
 	- switchport mode access
 	- switchport access vlan 10
 	
+	(para voip=
+	
+	- interface f0/..
+	- switchport mode acess 
+	- switchport voice vlan 90
+	
 (A vlan 80 e 90 apenas têm uma porta atribuida, de modo a ficarem 4 portas livres no switch)
 	ou seja vou deixar 1/6 das portas livres e não 1/4
 

@@ -25,6 +25,10 @@ Secure privileged EXEC access with a password
 	- line vty 0 15
 	- password rc
 	- login 
+
+PARA REMOVER ACCESS LIST
+	(line vty 0 15
+	no access-class 1 in)
 	
 	(cisco support up to 16 VTY lines that are numbered 0 to 15.
 	
@@ -291,7 +295,7 @@ DHCP VLAN 90
 ------------
 ;ip dhcp excluded-address 172.20.35.1
 ip dhcp pool VLAN_90_VOIP
-network 172.20.35.1 255.255.255.192
+network 172.20.35.1 255.255.255.192	;2
 default-router 172.20.35.1	
 
 
@@ -306,11 +310,37 @@ network 172.20.35.138 255.255.255.240
 default-router 172.20.35.129	
 
 
+
+---------------
+VOIP COnfiguration:
+
+telephony-service 
+max-dn 100
+max-ephones 40 (nº max telefones)
+ip source-address 172.20.35.138   port 2000 (dados da vlan gestao!, pq 
+auto assign 1 to 40 (atribuir ips a medida que os tleefones se vao conectando)
+exit
+
+ephone-dn 1 (slots para os teles se conectarem)
+number 011 (nº do telefone)
+exit
+
+(cada telefone que ligar tenho que fazer isto no router)
+ephone-dn 2 
+number 021
+exit 
+
+
+
+
+---------------
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 Garantir que so a malta da vlan gestao consegue aceder ao router remotamente para configuração
 
 access-list 1 deny any
-access-list 1 permit 172.20.35.129 0.0.0.240	//Só permite endereços que estejam entre 172.20.35.129 - 172.20.35.142		-> CERTEZA?
+access-list 1 permit 172.20.35.129 0.0.0.255 //Só permite endereços que estejam entre 172.20.35.129 - 172.20.35.142		-> CERTEZA?
+
 
 
 Depois das restrições definidas, tenho que aplicá-las às linhas vty !!
