@@ -1,0 +1,309 @@
+!
+version 12.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+! nome do router 
+hostname RT1.1
+!
+!
+! password do modo priveligiado, password que é 'cisco'
+enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+!
+! Excluidos os default gateways de todas as vlans das pools de dhcp
+ip dhcp excluded-address 172.20.35.65
+ip dhcp excluded-address 172.20.35.193
+ip dhcp excluded-address 172.20.35.145
+ip dhcp excluded-address 172.20.35.161
+ip dhcp excluded-address 172.20.35.217
+ip dhcp excluded-address 172.20.35.177
+ip dhcp excluded-address 172.20.35.129 172.20.35.137
+ip dhcp excluded-address 172.20.35.209
+!
+! Criação das pools de dhcp para cada vlan 
+ip dhcp pool VLAN_10_DESENVOLVIMENTO
+ network 172.20.35.64 255.255.255.192
+ default-router 172.20.35.65
+ip dhcp pool VLAN_70_GUEST
+ network 172.20.35.192 255.255.255.240
+ default-router 172.20.35.193
+ip dhcp pool VLAN_20_ADMINISTRACAO
+ network 172.20.35.144 255.255.255.240
+ default-router 172.20.35.145
+ip dhcp pool VLAN_30_COMERCIAL
+ network 172.20.35.160 255.255.255.240
+ default-router 172.20.35.161
+ip dhcp pool VLAN_50_AREA-FINANCEIRA
+ network 172.20.35.216 255.255.255.248
+ default-router 172.20.35.217
+ip dhcp pool VLAN_60_REUNIOES
+ network 172.20.35.176 255.255.255.240
+ default-router 172.20.35.177
+ip dhcp pool VLAN_99_GESTAO
+ network 172.20.35.128 255.255.255.240
+ default-router 172.20.35.129
+ip dhcp pool VLAN_40_RECEPCAO
+ network 172.20.35.208 255.255.255.248
+ default-router 172.20.35.209
+ip dhcp pool VLAN_90_VOIP
+ network 172.20.35.0 255.255.255.192
+ default-router 172.20.35.1
+ option 150 ip 172.20.35.1
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+! username e password que é 'rc' para aceder via ssh 
+username admin password 7 08334F
+!
+!
+!
+!
+!
+!
+!
+! nome do domínio
+ip domain-name cisco.com
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+! inteface 0/0 (interna) não tem ip porque existem as subinterfaces
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+! configuração da subinterface para a vlan 10, criando um encapsulamento, atribuindo o ip de default gateway e atribuindo uma access list
+interface FastEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 172.20.35.65 255.255.255.192
+ ip access-group 110 in
+!
+! configuração da subinterface para a vlan 20, criando um encapsulamento, atribuindo o ip de default gateway e atribuindo uma access list
+interface FastEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 172.20.35.145 255.255.255.240
+ ip access-group 120 in
+!
+! configuração da subinterface para a vlan 30, criando um encapsulamento, atribuindo o ip de default gateway e atribuindo uma access list
+interface FastEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 172.20.35.161 255.255.255.240
+ ip access-group 130 in
+!
+! configuração da subinterface para a vlan 40, criando um encapsulamento, atribuindo o ip de default gateway e atribuindo uma access list
+interface FastEthernet0/0.40
+ encapsulation dot1Q 40
+ ip address 172.20.35.209 255.255.255.248
+ ip access-group 140 in
+!
+! configuração da subinterface para a vlan 50, criando um encapsulamento, atribuindo o ip de default gateway e atribuindo uma access list
+interface FastEthernet0/0.50
+ encapsulation dot1Q 50
+ ip address 172.20.35.217 255.255.255.248
+ ip access-group 150 in
+!
+! configuração da subinterface para a vlan 60, criando um encapsulamento, atribuindo o ip de default gateway e atribuindo uma access list
+interface FastEthernet0/0.60
+ encapsulation dot1Q 60
+ ip address 172.20.35.177 255.255.255.240
+ ip access-group 160 in
+!
+! configuração da subinterface para a vlan 70, criando um encapsulamento, atribuindo o ip de default gateway e atribuindo uma access list
+interface FastEthernet0/0.70
+ encapsulation dot1Q 70
+ ip address 172.20.35.193 255.255.255.240
+ ip access-group 170 in
+!
+! configuração da subinterface para a vlan 80, criando um encapsulamento, atribuindo o ip de default gateway e atribuindo uma access list
+interface FastEthernet0/0.80
+ encapsulation dot1Q 80
+ ip address 172.20.35.225 255.255.255.248
+ ip access-group 180 in
+!
+! configuração da subinterface para a vlan 90, criando um encapsulamento, atribuindo o ip de default gateway
+interface FastEthernet0/0.90
+ encapsulation dot1Q 90
+ ip address 172.20.35.1 255.255.255.192
+!
+!! configuração da subinterface para a vlan 99, criando um encapsulamento, atribuindo o ip de default gateway
+interface FastEthernet0/0.99
+ encapsulation dot1Q 99
+ ip address 172.20.35.129 255.255.255.240
+!
+!configuração da interface 0/1 (exterior), atribuindo um ip disponível da rede de interligação que foi fornecida
+interface FastEthernet0/1
+ ip address 25.26.27.1 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+! Protocolo que permite ao router conhecer a rede exterior e a rede interna
+router rip
+ network 25.0.0.0
+ network 172.20.0.0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+! Criação de listas de acesso extendidas para as vlans existentes, cada comando tem uma explicação, fazendo uso do comando 'remark'
+access-list 110 remark Permissao de acesso de pcs da vlan gestao para a vlan 10
+access-list 110 permit icmp 172.20.35.64 0.0.0.63 172.20.35.128 0.0.0.15 echo-reply
+access-list 110 remark Permissao de ping para o gateway
+access-list 110 permit icmp 172.20.35.64 0.0.0.63 host 172.20.35.65 echo
+access-list 110 remark Permissao do trafego DHCP
+access-list 110 permit udp any any eq bootps
+access-list 110 remark Bloqueio do trafego para a rede interna, excepto para a vlan das impressoras
+access-list 110 permit ip 172.20.35.64 0.0.0.63 172.20.35.224 0.0.0.7
+access-list 110 deny ip any 172.20.35.0 0.0.0.255
+access-list 110 remark Permissao do trafego para a internet - rede externa
+access-list 110 permit ip any any
+access-list 120 remark Permissao de acesso de pcs da vlan gestao para a vlan 20
+access-list 120 permit icmp 172.20.35.144 0.0.0.15 172.20.35.128 0.0.0.15 echo-reply
+access-list 120 remark Permissao de ping para o gateway
+access-list 120 permit icmp 172.20.35.144 0.0.0.15 host 172.20.35.145 echo
+access-list 120 remark Permissao do trafego DHCP
+access-list 120 permit udp any any eq bootps
+access-list 120 remark Bloqueio do trafego para a rede interna, excepto para a vlan das impressoras
+access-list 120 permit ip 172.20.35.144 0.0.0.15 172.20.35.224 0.0.0.7
+access-list 120 deny ip any 172.20.35.0 0.0.0.255
+access-list 120 remark Permissao do trafego para a internet - rede externa
+access-list 120 permit ip any any
+access-list 130 remark Permissao de acesso de pcs da vlan gestao para a vlan 30
+access-list 130 permit icmp 172.20.35.160 0.0.0.15 172.20.35.128 0.0.0.15 echo-reply
+access-list 130 remark Permissao de ping para o gateway
+access-list 130 permit icmp 172.20.35.160 0.0.0.15 host 172.20.35.161 echo
+access-list 130 remark Permissao do trafego DHCP
+access-list 130 permit udp any any eq bootps
+access-list 130 remark Bloqueio do trafego para a rede interna, excepto para a vlan das impressoras
+access-list 130 permit ip 172.20.35.160 0.0.0.15 172.20.35.224 0.0.0.7
+access-list 130 deny ip any 172.20.35.0 0.0.0.255
+access-list 130 remark Permissao do trafego para a internet - rede externa
+access-list 130 permit ip any any
+access-list 140 remark Permissao de acesso de pcs da vlan gestao para a vlan 40
+access-list 140 permit icmp 172.20.35.208 0.0.0.7 172.20.35.128 0.0.0.15 echo-reply
+access-list 140 remark Permissao de ping para o gateway
+access-list 140 permit icmp 172.20.35.208 0.0.0.7 host 172.20.35.209 echo
+access-list 140 remark Permissao do trafego DHCP
+access-list 140 permit udp any any eq bootps
+access-list 140 remark Bloqueio do trafego para a rede interna, excepto para a vlan das impressoras
+access-list 140 permit ip 172.20.35.208 0.0.0.7 172.20.35.224 0.0.0.7
+access-list 140 deny ip any 172.20.35.0 0.0.0.255
+access-list 140 remark Permissao do trafego para a internet - rede externa
+access-list 140 permit ip any any
+access-list 150 remark Permissao de acesso de pcs da vlan gestao para a vlan 40
+access-list 150 permit icmp 172.20.35.216 0.0.0.7 172.20.35.128 0.0.0.15 echo-reply
+access-list 150 remark Permissao de ping para o gateway
+access-list 150 permit icmp 172.20.35.216 0.0.0.7 host 172.20.35.217 echo
+access-list 150 remark Permissao do trafego DHCP
+access-list 150 permit udp any any eq bootps
+access-list 150 remark Bloqueio do trafego para a rede interna, excepto para a vlan das impressoras
+access-list 150 permit ip 172.20.35.216 0.0.0.7 172.20.35.224 0.0.0.7
+access-list 150 deny ip any 172.20.35.0 0.0.0.255
+access-list 150 remark Permissao do trafego para a internet - rede externa
+access-list 150 permit ip any any
+access-list 160 remark Permissao de acesso de pcs da vlan gestao para a vlan 40
+access-list 160 permit icmp 172.20.35.176 0.0.0.15 172.20.35.128 0.0.0.15 echo-reply
+access-list 160 remark Permissao de ping para o gateway
+access-list 160 permit icmp 172.20.35.176 0.0.0.15 host 172.20.35.177 echo
+access-list 160 remark Permissao do trafego DHCP
+access-list 160 permit udp any any eq bootps
+access-list 160 remark Bloqueio do trafego para a rede interna, excepto para a vlan das impressoras
+access-list 160 permit ip 172.20.35.176 0.0.0.15 172.20.35.224 0.0.0.7
+access-list 160 deny ip any 172.20.35.0 0.0.0.255
+access-list 160 remark Permissao do trafego para a internet - rede externa
+access-list 160 permit ip any any
+access-list 170 remark Permissao de acesso de pcs da vlan gestao para a vlan 40
+access-list 170 permit icmp 172.20.35.192 0.0.0.15 172.20.35.128 0.0.0.15 echo-reply
+access-list 170 remark Permissao de ping para o gateway
+access-list 170 permit icmp 172.20.35.192 0.0.0.15 host 172.20.35.193 echo
+access-list 170 remark Permissao do trafego DHCP
+access-list 170 permit udp any any eq bootps
+access-list 170 remark Bloqueio do trafego para a rede interna, excepto para a vlan das impressoras
+access-list 170 permit ip 172.20.35.192 0.0.0.15 172.20.35.224 0.0.0.7
+access-list 170 deny ip any 172.20.35.0 0.0.0.255
+access-list 170 remark Permissao do trafego para a internet - rede externa
+access-list 170 permit ip any any
+access-list 180 remark Permissao de ping para o gateway
+access-list 180 permit icmp 172.20.35.224 0.0.0.7 host 172.20.35.225 echo
+access-list 180 remark Permite o trafego para a rede interna
+access-list 180 permit icmp any 172.20.35.0 0.0.0.255 echo-reply
+!
+! mensagem apresentada ao tentar entrar no presente dispositivo de rede
+banner motd ***Unauthorized access to this device is prohibited!***
+!
+!
+!
+! configuração do call manager! Esta configuração suporta no máximo 5 telefones IP
+telephony-service
+ max-ephones 5
+ max-dn 5
+ ip source-address 172.20.35.1 port 2000
+ auto assign 4 to 6
+ auto assign 1 to 5
+!
+! atribuição do número 54001 ao 1º telefone
+ephone-dn 1
+ number 54001
+!
+! atribuição do número 54002 ao 2º telefone
+ephone-dn 2
+ number 54002
+!
+! atribuição do número 54003 ao 3º telefone
+ephone-dn 3
+ number 54003
+! 
+! configuração do telefone 1 gerada automaticamente
+ephone 1
+ device-security-mode none
+ mac-address 0000.0C4B.E78A
+ type 7960
+ button 1:1
+! 
+! configuração do telefone 2 gerada automaticamente
+ephone 2
+ device-security-mode none
+ mac-address 0007.ECBA.40BB
+ type 7960
+ button 1:2
+! 
+! configuração do telefone 3 gerada automaticamente
+ephone 3
+ device-security-mode none
+ mac-address 0002.1722.7117
+ type 7960
+ button 1:3
+!
+! configuração de uma password ao tentar aceder ao router via modo utilizador, sendo a password 'rc'
+line con 0
+ password 7 08334F
+ login
+!
+line aux 0
+!
+!	Configuração das linhas vty, de modo a suportar o acesso remoto a este dispositivo via ssh e suportando ainda 15 utilizadores 
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+!
+! Fim da configuração do router
+end
+

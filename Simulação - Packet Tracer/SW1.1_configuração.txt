@@ -1,0 +1,153 @@
+!
+version 12.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+! nome do switch
+hostname SW1.1
+!
+!
+! password do modo priveligiado, password que é 'cisco'
+enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+! nome do domínio
+ip domain-name cisco.com
+!
+! username e password que é 'rc' para aceder via ssh 
+username admin privilege 1 password 7 08334F
+!
+!
+spanning-tree mode pvst
+!
+! porta f0/1 está configurada em modo trunk, ou seja, transportará informação de várias vlans
+interface FastEthernet0/1
+ switchport mode trunk
+! 
+interface FastEthernet0/2
+!
+interface FastEthernet0/3
+!
+! porta 4 atribuida à vlan 10 
+interface FastEthernet0/4
+ switchport access vlan 10
+ switchport mode access
+!
+! porta 5 atribuida à vlan 10 
+interface FastEthernet0/5
+ switchport access vlan 10
+ switchport mode access
+!
+! porta 6 atribuida à vlan 20 
+interface FastEthernet0/6
+ switchport access vlan 20
+ switchport mode access
+!
+! porta 7 atribuida à vlan 20 
+interface FastEthernet0/7
+ switchport access vlan 20
+ switchport mode access
+!
+! porta 8 atribuida à vlan 30 
+interface FastEthernet0/8
+ switchport access vlan 30
+ switchport mode access
+!
+! porta 9 atribuida à vlan 30 
+interface FastEthernet0/9
+ switchport access vlan 30
+ switchport mode access
+!
+! porta 10 atribuida à vlan 40 
+interface FastEthernet0/10
+ switchport access vlan 40
+ switchport mode access
+!
+! porta 11 atribuida à vlan 40 
+interface FastEthernet0/11
+ switchport access vlan 40
+ switchport mode access
+!
+! porta 12 atribuida à vlan 50 
+interface FastEthernet0/12
+ switchport access vlan 50
+ switchport mode access
+!
+! porta 13 atribuida à vlan 50 
+interface FastEthernet0/13
+ switchport access vlan 50
+ switchport mode access
+!
+! porta 14 atribuida à vlan 60 
+interface FastEthernet0/14
+ switchport access vlan 60
+ switchport mode access
+!
+! porta 15 atribuida à vlan 60 
+interface FastEthernet0/15
+ switchport access vlan 60
+ switchport mode access
+!
+! porta 16 atribuida à vlan 70 
+interface FastEthernet0/16
+ switchport access vlan 70
+ switchport mode access
+!
+! porta 17 atribuida à vlan 80 
+interface FastEthernet0/17
+ switchport access vlan 80
+ switchport mode access
+!
+! porta 18 atribuida à vlan 90 
+interface FastEthernet0/18
+ switchport mode access
+ switchport voice vlan 90
+!
+! porta 19 atribuida à vlan 99 
+interface FastEthernet0/19
+ switchport access vlan 99
+ switchport mode access
+!
+! Porta não está atribuida a nenhuma vlan
+interface FastEthernet0/20
+!
+! Porta não está atribuida a nenhuma vlan
+interface FastEthernet0/21
+!
+! Porta não está atribuida a nenhuma vlan
+interface FastEthernet0/22
+!
+! Porta não está atribuida a nenhuma vlan
+interface FastEthernet0/23
+!
+! Porta não está atribuida a nenhuma vlan
+interface FastEthernet0/24
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+! configuração do ip do switch na vlan 99 (gestão)
+interface Vlan99
+ ip address 172.20.35.130 255.255.255.240
+! ip de default-gateway
+ip default-gateway 172.20.35.129
+! 
+! mensagem apresentada ao tentar entrar no presente dispositivo de rede
+banner motd ***Unauthorized access to this device is prohibited!***
+!
+!
+! configuração de uma password ao tentar aceder ao switch via modo utilizador, sendo a password 'rc'
+line con 0
+ password 7 08334F
+ login
+!
+!	Configuração das linhas vty, de modo a suportar o acesso remoto a este dispositivo via ssh e suportando ainda 15 utilizadores 
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+!
+end
+
