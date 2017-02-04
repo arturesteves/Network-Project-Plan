@@ -1,0 +1,60 @@
+Access lists:
+
+todos da vlan gestao podem aceder a qualquer vlan e dispositivo de rede
+mas as outras vlans nao podem comunicar com outras.
+
+
+todos podem aceder a vlan das impressoras.
+
+
+Tentar apenas permitir o acesso via ssh um pc da vlan gestao!
+
+
+access-list 100 deny tcp 172.20.35.64 0.0.0.63 172.20.35.130 0.0.0.0 eq 22
+	
+	(seria isto para bloquear o acesso da vlan 10 ao switch 1???, 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+!--- This command is used to permit Telnet traffic !--- from machine 10.1.1.2 to machine 172.16.1.1.
+
+access-list 101 permit tcp host 10.1.1.2 host 172.16.1.1 eq telnet
+
+
+access-list 101 permit tcp host 172.20.35.140 host 172.20.35.130 eq 22  (22 porta de ssh)
+access-list 101 deny any   - nao e assim
+
+
+ver access lists:
+show access-list
+
+
+apagar access-list: no access-list 101
+	
+int f0/1	(ninguem podera aceder a interface do exterior)!
+ip access-group 101 in 
+
+access-list 101 remark permit_ssh
+comando:..
+
+
+
+Outra tentativa:
+ip access-list extended permit_ssh_router
+
+permit tcp host 172.20.35.140 host 172.20.35.130 eq 22  log 
+deny tcp any any
+end
+show ip access-list

@@ -295,9 +295,9 @@ DHCP VLAN 90
 ------------
 ;ip dhcp excluded-address 172.20.35.1
 ip dhcp pool VLAN_90_VOIP
-network 172.20.35.1 255.255.255.192	;2
+network 172.20.35.2 255.255.255.192	
 default-router 172.20.35.1	
-
+option 150 ip 172.20.35.1
 
 
 ___VER QUE GAMA DE ENDEREÇOS DEIXAR DE FORA
@@ -314,12 +314,42 @@ default-router 172.20.35.129
 ---------------
 VOIP COnfiguration:
 
+(remover pool da vlan 90 - voip)
+
+;ip dhcp excluded-address 172.20.35.1
+ip dhcp pool VLAN_90_VOIP
+	network 172.20.35.2 255.255.255.192	
+default-router 172.20.35.1	
+option 150 ip 172.20.35.1
+----
+
 telephony-service 
 max-dn 100
 max-ephones 40 (nº max telefones)
-ip source-address 172.20.35.138   port 2000 (dados da vlan gestao!, pq 
+ip source-address 172.20.35.1  port 2000 (dados da vlan gestao!, pq 
 auto assign 1 to 40 (atribuir ips a medida que os tleefones se vao conectando)
 exit
+
+
+ephone-dn 1
+number 1111
+
+ephone 1
+exit
+
+ephone-dn 2
+number 2222
+ephone 2
+exit
+
+ephone-dn 3 
+number 333
+ephone 3
+exit
+
+
+
+
 
 ephone-dn 1 (slots para os teles se conectarem)
 number 011 (nº do telefone)
@@ -332,6 +362,9 @@ exit
 
 
 
+(retir access-class 1 da linha vty)
+line vty 0 15 
+no access-class 1 in 
 
 ---------------
 

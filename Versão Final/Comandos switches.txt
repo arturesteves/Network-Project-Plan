@@ -170,9 +170,9 @@ desenvolvimento, o pc nao consegue aceder por ssh ao switch.)
 	
 	
 	
-	
-	
-	
+(para o voice funcionar)
+	int range f0/1-22 
+	switchport voice vlan 90
 	
 Criar a ligação trunk entre o switch e o router:
 		- interface F0/1
