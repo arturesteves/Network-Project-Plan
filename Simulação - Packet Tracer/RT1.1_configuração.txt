@@ -232,8 +232,7 @@ access-list 170 remark Permissao de ping para o gateway
 access-list 170 permit icmp 172.20.35.192 0.0.0.15 host 172.20.35.193 echo
 access-list 170 remark Permissao do trafego DHCP
 access-list 170 permit udp any any eq bootps
-access-list 170 remark Bloqueio do trafego para a rede interna, excepto para a vlan das impressoras
-access-list 170 permit ip 172.20.35.192 0.0.0.15 172.20.35.224 0.0.0.7
+access-list 170 remark Bloqueio do trafego para a rede interna
 access-list 170 deny ip any 172.20.35.0 0.0.0.255
 access-list 170 remark Permissao do trafego para a internet - rede externa
 access-list 170 permit ip any any
