@@ -1,4 +1,0 @@
-A mencionar no relatório:
-
-	1. Foi optado por duplicar o número de tomadas duplas necessárias. Caso o número de postos de trabalho, 
-ou outros equipamentos aumentem na sala, desta maneira as fichas não estão à conta.
